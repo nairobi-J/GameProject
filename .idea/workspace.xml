@@ -1,11 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="" />
+    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Entity/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (3).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (4).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (5).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (6).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (7).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/New Piskel-1.png (8).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Asset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/CollisionCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/SpriteSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_key.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/boots.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/chest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/door.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/key.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/TileManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/Tiles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/black.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/earth.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/galaxy.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/grass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/grass01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/je.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/land.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/sand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/soa.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/tree.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/wall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/water.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/water01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiles/world01.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2TeYtnmU4HBeWyFfKUsEaWb63Dz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -16,9 +70,21 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/ASUS/IdeaProjects/GameProject/src"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\IdeaProjects\GameProject\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\IdeaProjects\GameProject\src\Entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="main" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
