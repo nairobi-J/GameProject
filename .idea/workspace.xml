@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="master">
+    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="master2">
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Boots.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/SuperObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Asset.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,12 +88,20 @@
       <option name="project" value="LOCAL" />
       <updated>1691410396572</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="master2">
+      <created>1691413824230</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691413824230</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="master" />
-    <option name="LAST_COMMIT_MESSAGE" value="master" />
+    <MESSAGE value="master2" />
+    <option name="LAST_COMMIT_MESSAGE" value="master2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

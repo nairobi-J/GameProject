@@ -133,8 +133,14 @@ public class Player extends Entity{
                         gp.obj[i] = null;
                         hasKey--;
                     }
+                    System.out.println (hasKey);
                         break;
                 case "chest":
+                    break;
+                case "boots":
+                    speed += 2;
+                    gp.obj[i] = null;
+
                     break;
             }
         }
