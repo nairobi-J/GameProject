@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public SuperObject obj[]= new SuperObject[10];
     public Asset aset = new Asset(this);
+    public UI ui = new UI(this);
     TileManager tileM = new TileManager (this);
 
     public GamePanel ()
@@ -116,6 +117,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         //player
         player.draw(g2);
+        ui.draw(g2);
 
         g2.dispose();
         //player.draw2(g2);
