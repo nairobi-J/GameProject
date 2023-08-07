@@ -1,0 +1,132 @@
+Index: src/Entity/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Entity;\r\n\r\nimport main.GamePanel;\r\nimport main.KeyHandler;\r\n\r\nimport javax.imageio.ImageIO;\r\nimport javax.swing.plaf.basic.BasicTreeUI;\r\nimport java.awt.*;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.util.Objects;\r\n\r\npublic class Player extends Entity{\r\n    GamePanel gp;\r\n    KeyHandler keyH;\r\n\r\n    public final int screenX;\r\n    public final int screenY;\r\n    int hasKey = 0;\r\n\r\n    public Player(GamePanel gp, KeyHandler keyH)\r\n    {\r\n        this.gp = gp;\r\n        this.keyH = keyH;\r\n\r\n        screenX = gp.screenWidth/2 - (gp.tileSize/2);\r\n        screenY = gp.screenHeight/2 - (gp.tileSize/2);\r\n\r\n        solidArea = new Rectangle();\r\n        solidArea.x = 8;\r\n        solidArea.y = 16;\r\n        solidAreaDefaultX = solidArea.x;\r\n        solidAreaDefaultY = solidArea.y;\r\n        solidArea.width = 32;\r\n        solidArea.height = 32;\r\n\r\n        setDefaultValues ();\r\n        getPlayerImage();\r\n\r\n    }\r\n    public void setDefaultValues()\r\n    {\r\n        worldX = gp.tileSize*23;\r\n        worldY = gp.tileSize*21;\r\n        x = 100;\r\n        y = 100;\r\n        speed = 4;\r\n        direction = \"down\";\r\n\r\n    }\r\n    public void getPlayerImage() {\r\n        try{\r\n            up1 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (1).png\" ));\r\n            up2 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (2).png\" ));\r\n            down1 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (3).png\" ));\r\n            down2 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (4).png\" ));\r\n            right1 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (5).png\" ));\r\n            right2 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (6).png\" ));\r\n            left1 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (7).png\" ));\r\n            left2 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (8).png\" ));\r\n            //up1 = ImageIO.read(getClass().getResourceAsStream ( \"New Piskel-1.png (1).png\" ));\r\n\r\n        } catch (IOException e) {\r\n            throw new RuntimeException ( e );\r\n        }\r\n\r\n\r\n    }\r\n\r\n    public void update()\r\n    {\r\n        if(keyH.upPressed || keyH.downPressed || keyH.leftPressed|| keyH.rightPressed)\r\n        {\r\n            if(keyH.upPressed)\r\n                direction = \"up\";\r\n            else if(keyH.downPressed)\r\n                direction = \"down\";\r\n            else if(keyH.rightPressed)\r\n                direction = \"right\";\r\n            else if(keyH.leftPressed)\r\n                direction = \"left\";\r\n\r\n            collisionOn = false;\r\n            gp.ccheck.checkTile(this);\r\n            //ck obj col\r\n           int objIndex =  gp.ccheck.checkObject ( this, true );\r\n           pickUpObject(objIndex);\r\n            if(collisionOn == false)\r\n            {\r\n                switch (direction)\r\n                {\r\n                    case \"up\": worldY -= speed;\r\n                        break;\r\n                    case \"down\": worldY += speed;\r\n                        break;\r\n                    case \"left\": worldX -= speed;\r\n                        break;\r\n                    case \"right\": worldX += speed;\r\n                        break;\r\n\r\n                }\r\n            }\r\n            spriteCounter++;\r\n            if(spriteCounter > 5)\r\n            {\r\n                if(spriteNum == 1)\r\n                    spriteNum = 2;\r\n                else if(spriteNum == 2)\r\n                    spriteNum = 1;\r\n                spriteCounter = 0;\r\n\r\n            }}\r\n    }\r\n    public void pickUpObject(int i)\r\n\r\n    {\r\n        if(i != 999)\r\n        {\r\n           // gp.obj[i] = null;\r\n            String objectName = gp.obj[i].name;\r\n            switch(objectName)\r\n            {\r\n                case \"key\":\r\n                    hasKey++;\r\n                    gp.obj[i] = null;\r\n                    System.out.println (hasKey);\r\n\r\n                    break;\r\n                case  \"door\":\r\n                    if(hasKey > 0)\r\n                    {\r\n                        gp.obj[i] = null;\r\n                        hasKey--;\r\n                    }\r\n                    System.out.println (hasKey);\r\n                        break;\r\n                case \"chest\":\r\n                    break;\r\n                case \"boots\":\r\n                    speed += 2;\r\n                    gp.obj[i] = null;\r\n\r\n                    break;\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n\r\n    public void draw(Graphics2D g2)\r\n    {\r\n//      g2.setColor ( Color.white);\r\n//      g2.fillRect(x, y,gp.tileSize,gp.tileSize );\r\n        //g2.drawImage(image, 5, 10, 100, 100, null );\r\n        BufferedImage image  = null;\r\n        switch(direction)\r\n        {\r\n            case \"up\":\r\n                if(spriteNum == 1) image = up1;\r\n                if(spriteNum == 2) image = up2;\r\n                break;\r\n            case \"down\":\r\n                if(spriteNum == 1) image = down1;\r\n                if(spriteNum == 2) image = down2;\r\n                break;\r\n            case \"left\":\r\n                if(spriteNum == 1) image = left1;\r\n                if(spriteNum == 2) image = left2;\r\n\r\n                break;\r\n            case \"right\":\r\n                if(spriteNum == 1) image = right1;\r\n                if(spriteNum == 2) image = right2;\r\n                break;\r\n\r\n        }\r\n\r\n        g2.drawImage(image,screenX, screenY,gp.tileSize, gp.tileSize, null );\r\n\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Entity/Player.java b/src/Entity/Player.java
+--- a/src/Entity/Player.java	(revision 94c0c7964d35ac8b0bbc1527e436775ba02d6f74)
++++ b/src/Entity/Player.java	(date 1691417740778)
+@@ -17,7 +17,7 @@
+ 
+     public final int screenX;
+     public final int screenY;
+-    int hasKey = 0;
++    public int hasKey = 0;
+ 
+     public Player(GamePanel gp, KeyHandler keyH)
+     {
+Index: src/main/GamePanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main;\r\n\r\nimport Entity.Player;\r\nimport object.SuperObject;\r\nimport tiles.TileManager;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\n\r\npublic class GamePanel extends JPanel implements Runnable {\r\n    //Screen settings\r\n    final int originalTileSize = 16;\r\n    final int scale = 3;\r\n    public final int tileSize = originalTileSize*scale;\r\n   public final int maxScreenCol = 16;\r\n   public final int maxScreenRow = 12;\r\n   public final int screenHeight = tileSize*maxScreenRow;\r\n    public final int screenWidth = tileSize*maxScreenCol;\r\n    //world setting\r\n    public final int maxWorldCol = 50;\r\n    public final int maxWorldRow = 50;\r\n    public final int worldWidth = tileSize*maxWorldCol;\r\n    public final int worldHeight = tileSize*maxWorldRow;\r\n\r\n\r\n\r\n    int FPS = 60;\r\n    int playerX = 100;\r\n    int playerY = 100;\r\n    int playerSpeed = 4;\r\n    Thread gameThread;\r\n    public CollisionCheck ccheck  = new CollisionCheck(this);\r\n    KeyHandler keyH = new KeyHandler();\r\n    public Player player = new Player (this,keyH);\r\n\r\n    public SuperObject obj[]= new SuperObject[10];\r\n    public Asset aset = new Asset(this);\r\n    TileManager tileM = new TileManager (this);\r\n\r\n    public GamePanel ()\r\n    {\r\n        this.setPreferredSize(new Dimension (screenWidth,screenHeight));\r\n        this.setBackground(Color.black);\r\n        this.setDoubleBuffered(true);\r\n        this.addKeyListener(keyH);\r\n        this.setFocusable (true);\r\n        //to rcv key input\r\n    }\r\n    public void setupGame()\r\n    {\r\n        aset.setObject();\r\n    }\r\n    public void startGameThread()\r\n    {\r\n        gameThread = new Thread(this);\r\n        gameThread.start();\r\n\r\n\r\n    }\r\n    @Override\r\n\r\n    public void run()\r\n    {\r\n        double drawInterval = 1000000000/FPS;\r\n        double delta = 0;\r\n        long lastTime = System.nanoTime ();\r\n        long currentTime;\r\n        long timer = 0;\r\n        int drawCount = 0;\r\n\r\n        while(gameThread != null)\r\n        {\r\n            currentTime = System.nanoTime ();\r\n            delta += (currentTime - lastTime)/drawInterval;\r\n            timer += (currentTime - lastTime);\r\n            lastTime = currentTime;\r\n            if(delta >= 100)\r\n            {\r\n                update();\r\n                repaint();\r\n                delta--;\r\n                drawCount++;\r\n            }\r\n            if(timer >= 1000000000)\r\n            {\r\n                System.out.println (drawCount);\r\n                drawCount = 0;\r\n                timer = 0;\r\n            }\r\n\r\n        }\r\n    }\r\n\r\n\r\n  /////////////////////////////\r\n    public void update()\r\n    {\r\n        player.update();\r\n\r\n    }\r\n\r\n    public void paintComponent(Graphics g)\r\n    {\r\n        super.paintComponent(g);\r\n        Graphics2D g2 = (Graphics2D)g;\r\n        //TILE\r\n\r\n        tileM.draw(g2);\r\n        //object\r\n        for(int i = 0; i < obj.length; i++)\r\n        {\r\n            if(obj[i] != null)\r\n            {\r\n                obj[i].draw(g2, this);\r\n            }\r\n        }\r\n        //player\r\n        player.draw(g2);\r\n\r\n        g2.dispose();\r\n        //player.draw2(g2);\r\n       // g2.dispose();\r\n\r\n        //dispose of this graphics context and release any system resources that it is using\r\n\r\n\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/GamePanel.java b/src/main/GamePanel.java
+--- a/src/main/GamePanel.java	(revision 94c0c7964d35ac8b0bbc1527e436775ba02d6f74)
++++ b/src/main/GamePanel.java	(date 1691417910157)
+@@ -35,6 +35,7 @@
+ 
+     public SuperObject obj[]= new SuperObject[10];
+     public Asset aset = new Asset(this);
++    public UI ui = new UI(this);
+     TileManager tileM = new TileManager (this);
+ 
+     public GamePanel ()
+@@ -116,6 +117,7 @@
+         }
+         //player
+         player.draw(g2);
++        ui.draw(g2);
+ 
+         g2.dispose();
+         //player.draw2(g2);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2b0c0988-38b5-4fdd-93ed-d589eb82a98f\" name=\"Changes\" comment=\"master2\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/object/OBJ_Boots.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Entity/Player.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Entity/Player.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/Asset.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/Asset.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_TAGS\">\r\n      <GitPushTagMode>\r\n        <option name=\"argument\" value=\"--tags\" />\r\n        <option name=\"title\" value=\"All\" />\r\n      </GitPushTagMode>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2TeYtnmU4HBeWyFfKUsEaWb63Dz\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/ASUS/IdeaProjects/GameProject/src\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ASUS\\IdeaProjects\\GameProject\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ASUS\\IdeaProjects\\GameProject\\src\\Entity\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"main\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2b0c0988-38b5-4fdd-93ed-d589eb82a98f\" name=\"Changes\" comment=\"\" />\r\n      <created>1691405232942</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1691405232942</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"master\">\r\n      <created>1691406160619</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1691406160619</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"master\">\r\n      <created>1691407216310</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1691407216310</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"master\">\r\n      <created>1691410396572</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1691410396572</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"master2\">\r\n      <created>1691413824230</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1691413824230</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"master\" />\r\n    <MESSAGE value=\"master2\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"master2\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 94c0c7964d35ac8b0bbc1527e436775ba02d6f74)
++++ b/.idea/workspace.xml	(date 1691419686691)
+@@ -4,11 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="master2">
+-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Boots.java" afterDir="false" />
++    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="obj-mas">
++      <change afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Player.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/Asset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Asset.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -95,13 +95,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1691413824230</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="obj-mas">
++      <created>1691416736956</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1691416736956</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="master" />
+     <MESSAGE value="master2" />
+-    <option name="LAST_COMMIT_MESSAGE" value="master2" />
++    <MESSAGE value="obj-mas" />
++    <option name="LAST_COMMIT_MESSAGE" value="obj-mas" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/main/UI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/UI.java b/src/main/UI.java
+new file mode 100644
+--- /dev/null	(date 1691420204962)
++++ b/src/main/UI.java	(date 1691420204962)
+@@ -0,0 +1,28 @@
++package main;
++
++import object.OBJ_key;
++
++import java.awt.*;
++import java.awt.image.BufferedImage;
++
++public class UI {
++    GamePanel gp;
++    Font arial_40;
++    BufferedImage keyImage;
++    public UI(GamePanel gp)
++    {
++        this.gp = gp;
++        arial_40 = new Font("Arial", Font.PLAIN, 40);
++        OBJ_key key = new OBJ_key();
++        keyImage = key.image;
++
++    }
++    public void draw( Graphics2D g2)
++    {
++          g2.setFont(arial_40);
++          g2.setColor(Color.white);
++          g2.drawImage(keyImage,gp.tileSize/2,gp.tileSize/2 ,gp.tileSize, gp.tileSize, null);
++          g2.drawString("x = " + gp.player.hasKey, 74, 50);
++
++    }
++}
