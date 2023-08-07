@@ -45,7 +45,7 @@ public class Player extends Entity{
         worldY = gp.tileSize*21;
         x = 100;
         y = 100;
-        speed = 4;
+        speed = 2;
         direction = "down";
 
     }
@@ -144,7 +144,7 @@ public class Player extends Entity{
                 case "chest":
                     break;
                 case "boots":
-                    speed += 2;
+                    speed += 1;
                     gp.obj[i] = null;
                     gp.ui.showMessage ( "speed upp" );
 
