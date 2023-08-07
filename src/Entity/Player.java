@@ -14,8 +14,11 @@ import java.util.Objects;
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
+
     public final int screenX;
     public final int screenY;
+    int hasKey = 0;
+
     public Player(GamePanel gp, KeyHandler keyH)
     {
         this.gp = gp;
@@ -24,9 +27,13 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
-        solidArea = new Rectangle(20, 20, 20, 20);
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         setDefaultValues ();
         getPlayerImage();
@@ -78,6 +85,7 @@ public class Player extends Entity{
             gp.ccheck.checkTile(this);
             //ck obj col
            int objIndex =  gp.ccheck.checkObject ( this, true );
+           pickUpObject(objIndex);
             if(collisionOn == false)
             {
                 switch (direction)
@@ -104,6 +112,35 @@ public class Player extends Entity{
 
             }}
     }
+    public void pickUpObject(int i)
+
+    {
+        if(i != 999)
+        {
+           // gp.obj[i] = null;
+            String objectName = gp.obj[i].name;
+            switch(objectName)
+            {
+                case "key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    System.out.println (hasKey);
+
+                    break;
+                case  "door":
+                    if(hasKey > 0)
+                    {
+                        gp.obj[i] = null;
+                        hasKey--;
+                    }
+                        break;
+                case "chest":
+                    break;
+            }
+        }
+
+    }
+
 
     public void draw(Graphics2D g2)
     {
@@ -133,7 +170,7 @@ public class Player extends Entity{
 
         }
 
-        g2.drawImage(image,screenX, screenY,100, 100, null );
+        g2.drawImage(image,screenX, screenY,gp.tileSize, gp.tileSize, null );
 
 
 
