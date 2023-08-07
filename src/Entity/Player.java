@@ -19,6 +19,7 @@ public class Player extends Entity{
     public final int screenY;
     public int hasKey = 0;
 
+
     public Player(GamePanel gp, KeyHandler keyH)
     {
         this.gp = gp;
@@ -142,6 +143,8 @@ public class Player extends Entity{
                     System.out.println (hasKey);
                         break;
                 case "chest":
+                    gp.ui.gameFinished = true;
+
                     break;
                 case "boots":
                     speed += 1;
@@ -149,6 +152,7 @@ public class Player extends Entity{
                     gp.ui.showMessage ( "speed upp" );
 
                     break;
+
             }
         }
 
