@@ -124,6 +124,7 @@ public class Player extends Entity{
                 case "key":
                     hasKey++;
                     gp.obj[i] = null;
+                    gp.ui.showMessage ( "congo!! you got a KEYYY!!!");
                     System.out.println (hasKey);
 
                     break;
@@ -132,6 +133,11 @@ public class Player extends Entity{
                     {
                         gp.obj[i] = null;
                         hasKey--;
+                        gp.ui.showMessage ( "ye!!You opened the Door!!" );
+                    }
+                    else
+                    {
+                        gp.ui.showMessage ( "OPPSS! you need a Key" );
                     }
                     System.out.println (hasKey);
                         break;
@@ -140,6 +146,7 @@ public class Player extends Entity{
                 case "boots":
                     speed += 2;
                     gp.obj[i] = null;
+                    gp.ui.showMessage ( "speed upp" );
 
                     break;
             }
