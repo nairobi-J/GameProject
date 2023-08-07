@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="ui">
-      <change beforePath="$PROJECT_DIR$/src/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="2b0c0988-38b5-4fdd-93ed-d589eb82a98f" name="Changes" comment="entity" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,7 +133,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691421985628</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="boots">
+      <created>1691422453558</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1691422453558</updated>
+    </task>
+    <task id="LOCAL-00012" summary="entity">
+      <created>1691422571275</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1691422571275</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -143,7 +155,10 @@
     <MESSAGE value="master2" />
     <MESSAGE value="obj-mas" />
     <MESSAGE value="ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui" />
+    <MESSAGE value="boots" />
+    <MESSAGE value="Entity" />
+    <MESSAGE value="entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="entity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
